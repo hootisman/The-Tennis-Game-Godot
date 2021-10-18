@@ -7,29 +7,26 @@ extends KinematicBody2D
 
 
 export var currentSide : String = 'R'		#R if on right side of screen, L if not
-var speed : int = 500
-var currentVel : Vector2 = Vector2()	#current velocity
-var x_bound : int = 120  	#half of the entire player sprite size.x
 
+var currentVel : Vector2 = Vector2()	#current velocity
+var playerSpeed : int = 1
 #screen size
 onready var screen_size : Vector2 = get_viewport().get_visible_rect().size
 	
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
+func _ready():
+	if currentSide == 'L':
+		scale.x *= -1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 func _physics_process(delta):
-	currentVel.x = 0
-	
-	if Input.is_action_pressed("ui_left") && position.x > x_bound:
-		currentVel.x -= speed
-	if Input.is_action_pressed("ui_right") && position.x < screen_size.x - x_bound:
-		currentVel.x += speed
+	var mousepos = get_viewport().get_mouse_position()	
+	var currentDistance = mousepos.x - position.x
+	currentVel.x = playerSpeed*currentDistance 
+		
 	currentVel = move_and_slide(currentVel)
-
+	#currentVel.x = 0
 	
 
