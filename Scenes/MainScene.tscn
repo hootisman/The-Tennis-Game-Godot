@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/PlayerRacket.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/SideSwitchCollisionBox.tscn" type="PackedScene" id=2]
+
+[node name="MainScene" type="Node2D"]
+
+[node name="SwitchToR" parent="." instance=ExtResource( 2 )]
+position = Vector2( 684.522, 491.114 )
+sideToSwitchTo = "R"
+
+[node name="PlayerRacket" parent="." instance=ExtResource( 1 )]
+position = Vector2( 507.927, 433.04 )
+
+[node name="SwitchToL" parent="." instance=ExtResource( 2 )]
+position = Vector2( 324.553, 493.115 )
